@@ -99,51 +99,54 @@ public class AdminDashboard {
                 break;
 
             case 2: // ── Add scooty ────────────────────────────────────────────
-                System.out.print("Model        : "); String model     = sc.nextLine();
-                System.out.print("Brand        : "); String brand     = sc.nextLine();
-                System.out.print("Reg Number   : "); String regNum    = sc.nextLine();
-                double price = readDouble("Price per Hr : ");
-
-                boolean added = service.registerScooty(model, brand, regNum, price);
-                if (added) System.out.println("[OK] Scooty registered successfully.");
-                break;
+            System.out.print("Model        : "); String model  = sc.nextLine();
+            System.out.print("Brand        : "); String brand  = sc.nextLine();
+            System.out.print("Reg Number   : "); String regNum = sc.nextLine();
+            double price = readDouble("Price per Hr : ");
+            sc.nextLine(); // ← add this line
+            boolean added = service.registerScooty(model, brand, regNum, price);
+            if (added) System.out.println("[OK] Scooty registered successfully.");
+            break;
 
             case 3: // ── Update scooty ─────────────────────────────────────────
-                int updateId = readInt("Scooty ID to update : ");
-                System.out.print("New Model       : "); String nModel  = sc.nextLine();
-                System.out.print("New Brand       : "); String nBrand  = sc.nextLine();
-                System.out.print("New Reg Number  : "); String nReg    = sc.nextLine();
-                System.out.print("New Status      : "); String nStatus = sc.nextLine();
-                double nPrice = readDouble("New Price/Hr    : ");
+    int updateId = readInt("Scooty ID to update : ");
+    sc.nextLine(); // ← add this
+    System.out.print("New Model       : "); String nModel  = sc.nextLine();
+    System.out.print("New Brand       : "); String nBrand  = sc.nextLine();
+    System.out.print("New Reg Number  : "); String nReg    = sc.nextLine();
+    System.out.print("New Status      : "); String nStatus = sc.nextLine();
+    double nPrice = readDouble("New Price/Hr    : ");
+    sc.nextLine(); // ← add this
+    service.updateScootyDetails(updateId, nModel, nBrand, nReg, nStatus, nPrice);
+    break;
 
-                service.updateScootyDetails(updateId, nModel, nBrand, nReg, nStatus, nPrice);
-                break;
+case 4: // ── Change status ─────────────────────────────────────────
+    int statusId = readInt("Scooty ID : ");
+    sc.nextLine(); // ← add this
+    System.out.println("Statuses  : available | booked | maintenance");
+    System.out.print("New Status: ");
+    String newStatus = sc.nextLine().trim();
+    service.changeStatus(statusId, newStatus);
+    break;
 
-            case 4: // ── Change status ─────────────────────────────────────────
-                int statusId = readInt("Scooty ID : ");
-                System.out.println("Statuses  : available | booked | maintenance");
-                System.out.print("New Status: ");
-                String newStatus = sc.nextLine().trim();
-                service.changeStatus(statusId, newStatus);
-                break;
+case 5: // ── Delete scooty ─────────────────────────────────────────
+    int delId = readInt("Scooty ID to delete : ");
+    sc.nextLine(); // ← add this
+    System.out.print("Confirm delete? (yes/no): ");
+    String confirm = sc.nextLine().trim();
+    if (confirm.equalsIgnoreCase("yes")) {
+        service.removeScooty(delId);
+    } else {
+        System.out.println("[CANCELLED] Delete aborted.");
+    }
+    break;
 
-            case 5: // ── Delete scooty ─────────────────────────────────────────
-                int delId = readInt("Scooty ID to delete : ");
-                System.out.print("Confirm delete? (yes/no): ");
-                String confirm = sc.nextLine().trim();
-                if (confirm.equalsIgnoreCase("yes")) {
-                    service.removeScooty(delId);
-                } else {
-                    System.out.println("[CANCELLED] Delete aborted.");
-                }
-                break;
-
-            case 6: // ── Filter by status ──────────────────────────────────────
-                System.out.println("Filter by: available | booked | maintenance");
-                System.out.print("Status    : ");
-                String filterStatus = sc.nextLine().trim();
-                service.viewScootiesByStatus(filterStatus);
-                break;
+case 6: // ── Filter by status ──────────────────────────────────────
+    System.out.println("Filter by: available | booked | maintenance");
+    System.out.print("Status    : ");
+    String filterStatus = sc.nextLine().trim();
+    service.viewScootiesByStatus(filterStatus);
+    break;
 
             case 7: // ── Logout ────────────────────────────────────────────────
                 return false;
