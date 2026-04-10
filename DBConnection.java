@@ -84,7 +84,7 @@ public class DBConnection {
 
     private static final String URL  = "jdbc:mysql://localhost:3306/ScootyRentalDB";
     private static final String USER = "root";
-    private static final String PASS = "yourpassword";
+    private static final String PASS = "V1vek5500";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
