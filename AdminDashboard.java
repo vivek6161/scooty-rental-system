@@ -1,7 +1,3 @@
-package com.scooty.main;
-
-import com.scooty.admin.Admin;
-import com.scooty.service.ScootyService;
 
 import java.util.Scanner;
 
