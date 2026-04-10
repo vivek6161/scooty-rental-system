@@ -1,4 +1,4 @@
-package com.scooty.dao;
+
 
 import com.scooty.db.DBConnection;
 import com.scooty.model.Scooty;
