@@ -1,68 +1,31 @@
-
-
-import java.sql.Date;
-
-/**
- * Scooty.java
- * Model / Entity class — holds all data fields for a scooty.
- * No business logic, no database calls — just data + getters/setters.
- * Member 2 – Admin & Scooty Management Module
- */
 public class Scooty {
-
-    // ─── Fields ───────────────────────────────────────────────────────────────
-
-    private int    scootyId;
-    private String model;
+    private int scootyId;
+    private String modelName;
     private String brand;
     private String regNumber;
-    private String status;       // "available" | "booked" | "maintenance"
-    private double pricePerHr;
-    private Date   addedDate;
+    private double dailyRate;
+    private String status;
 
-    // ─── Constructors ─────────────────────────────────────────────────────────
-
-    public Scooty() {}
-
-    public Scooty(String model, String brand, String regNumber,
-                  String status, double pricePerHr) {
-        this.model      = model;
-        this.brand      = brand;
-        this.regNumber  = regNumber;
-        this.status     = status;
-        this.pricePerHr = pricePerHr;
+    public Scooty(String modelName, String brand, String regNumber, double dailyRate) {
+        this.modelName = modelName;
+        this.brand = brand;
+        this.regNumber = regNumber;
+        this.dailyRate = dailyRate;
+        this.status = "Available";
     }
 
-    // ─── Getters & Setters ────────────────────────────────────────────────────
-
-    public int    getScootyId()              { return scootyId; }
-    public void   setScootyId(int scootyId)  { this.scootyId = scootyId; }
-
-    public String getModel()                 { return model; }
-    public void   setModel(String model)     { this.model = model; }
-
-    public String getBrand()                 { return brand; }
-    public void   setBrand(String brand)     { this.brand = brand; }
-
-    public String getRegNumber()             { return regNumber; }
-    public void   setRegNumber(String r)     { this.regNumber = r; }
-
-    public String getStatus()               { return status; }
-    public void   setStatus(String status)  { this.status = status; }
-
-    public double getPricePerHr()                  { return pricePerHr; }
-    public void   setPricePerHr(double pricePerHr) { this.pricePerHr = pricePerHr; }
-
-    public Date getAddedDate()              { return addedDate; }
-    public void setAddedDate(Date addedDate){ this.addedDate = addedDate; }
-
-    // ─── toString ─────────────────────────────────────────────────────────────
+    public int getScootyId() { return scootyId; }
+    public void setScootyId(int id) { this.scootyId = id; }
+    public String getModelName() { return modelName; }
+    public String getBrand() { return brand; }
+    public String getRegNumber() { return regNumber; }
+    public double getDailyRate() { return dailyRate; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     @Override
     public String toString() {
-        return String.format(
-            "Scooty{id=%d, model='%s', brand='%s', reg='%s', status='%s', price=%.2f/hr, added=%s}",
-            scootyId, model, brand, regNumber, status, pricePerHr, addedDate
-        );
+        return "[" + scootyId + "] " + brand + " " + modelName +
+               " | Reg: " + regNumber + " | Rs." + dailyRate + "/day | " + status;
     }
 }
