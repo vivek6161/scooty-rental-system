@@ -2,6 +2,7 @@ package database;
 
 import dao.CustomerDAO;
 import dao.ScootyDAO;
+import dao.BookingDAO;
 import models.Customer;
 import models.Scooty;
 import java.util.*;
@@ -10,6 +11,7 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static ScootyDAO scootyDAO = new ScootyDAO();
     static CustomerDAO customerDAO = new CustomerDAO();
+    static BookingDAO bookingDAO = new BookingDAO();
 
     public static void main(String[] args) {
         while (true) {
@@ -18,6 +20,9 @@ public class Main {
             System.out.println("2. View All Scooties");
             System.out.println("3. Add Customer");
             System.out.println("4. View All Customers");
+            System.out.println("5. Create Booking");
+            System.out.println("6. View Active Bookings");
+            System.out.println("7. Close Rental & Generate Bill");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -28,6 +33,9 @@ public class Main {
                 case 2 -> viewScooties();
                 case 3 -> addCustomer();
                 case 4 -> viewCustomers();
+                case 5 -> createBooking();
+                case 6 -> bookingDAO.viewActiveBookings();
+                case 7 -> closeRental();
                 case 0 -> { System.out.println("Bye!"); return; }
                 default -> System.out.println("Invalid choice!");
             }
@@ -66,5 +74,17 @@ public class Main {
         List<Customer> list = customerDAO.getAllCustomers();
         if (list.isEmpty()) { System.out.println("No customers found."); return; }
         list.forEach(System.out::println);
+    }
+
+    static void createBooking() {
+        System.out.print("Customer ID: "); int cid = sc.nextInt();
+        System.out.print("Scooty ID: ");   int sid = sc.nextInt(); sc.nextLine();
+        bookingDAO.createBooking(cid, sid);
+    }
+
+    static void closeRental() {
+        System.out.print("Enter Booking ID to close: ");
+        int bid = sc.nextInt(); sc.nextLine();
+        bookingDAO.closeBooking(bid);
     }
 }
