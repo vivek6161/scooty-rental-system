@@ -1,4 +1,4 @@
-package com.scooty.model;
+
 
 import java.sql.Date;
 
