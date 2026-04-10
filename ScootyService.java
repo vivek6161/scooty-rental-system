@@ -1,9 +1,9 @@
-package com.scooty.service;
 
-import com.scooty.dao.ScootyDAO;
+
+
+
+
 import com.scooty.model.Scooty;
-
-import java.util.List;
 
 /**
  * ScootyService.java
