@@ -1,6 +1,4 @@
-package com.scooty.admin;
 
-import com.scooty.db.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
